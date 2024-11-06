@@ -1,0 +1,122 @@
+<div class="min-h-screen grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-100 p-6 mt-16">
+    <!-- Sidebar -->
+<div class="bg-white shadow-lg p-4 rounded-md">
+    <!-- Profile Picture & Name -->
+    <div class="text-center mb-6">
+      <img src="https://via.placeholder.com/80" alt="Profile Picture" class="w-20 h-20 rounded-full mx-auto mb-2">
+      <h3 *ngIf="isLoggedIn()" class="text-xl font-semibold">{{ getUserName() }}</h3>
+    </div>
+  
+    <!-- Sidebar Links -->
+    <ul class="space-y-4">
+      <!-- MY ORDERS -->
+      <li class="text-gray-600"> 
+        <a routerLink="orders" class="font-semibold flex items-center  hover:bg-gray-200 rounded-lg">
+            <span class="p-2"><ng-icon name="heroFolderArrowDownSolid"></ng-icon></span> MY ORDERS
+        </a>
+      </li>
+      
+
+      <hr class="border-t border-gray-300 my-4">
+  
+      <!-- ACCOUNT SETTINGS -->
+      <li class="text-gray-600">
+        <h4 class="font-semibold text-gray-500">
+           <span class="p-2"><ng-icon name="heroUsersSolid"></ng-icon></span>ACCOUNT SETTINGS
+        </h4>
+        <ul class="ml-6 space-y-2">
+          <li class=" hover:text-blue-600 ">
+            <a routerLink="user-info" class="flex items-center ml-2 py-3 text-black text-sm" routerLinkActive="bg-gray-100 text-blue-600 font-semibold">
+               Profile Information
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center ml-2 py-3 hover:bg-gray-100 hover:text-blue-600 text-black text-sm" routerLinkActive="bg-gray-100 text-blue-600 font-semibold" routerLink="manage-address">
+               Manage Addresses
+            </a>
+          </li>
+          <li>
+            <a routerLink="pan-card-info" class="flex items-center ml-2 py-3 hover:bg-gray-100 hover:text-blue-600 text-black text-sm" routerLinkActive="bg-gray-100 text-blue-600 font-semibold">
+              PAN Card Information
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <hr class="border-t border-gray-300 my-4">
+      <!-- PAYMENTS -->
+      <li class="text-gray-600">
+        <h4 class="font-semibold text-gray-500">
+           <span class="p-2"><ng-icon name="heroWalletSolid"></ng-icon></span>PAYMENTS
+        </h4>
+        <ul class="ml-6 space-y-2">
+          <li>
+            <a href="#" class="flex items-center ml-2 py-3 hover:bg-gray-100 hover:text-blue-600 text-black text-sm">
+                Gift Cards <span class="ml-auto">₹0</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center ml-2 py-3 hover:bg-gray-100 hover:text-blue-600 text-black text-sm">
+                Saved UPI
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center ml-2 py-3 hover:bg-gray-100 hover:text-blue-600 text-black text-sm">
+                Saved Cards
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <hr class="border-t border-gray-300 my-4">
+       <!-- MY STUFF Section -->
+      <li class="text-gray-600">
+        <h4 class="font-semibold text-gray-500">
+           <span class="p-2"><ng-icon name="heroFolderSolid"></ng-icon></span> MY STUFF
+        </h4>
+        <ul class="ml-6 space-y-2">
+          <li>
+            <a href="#" class="flex items-center ml-2 py-3 hover:bg-gray-100 hover:text-blue-600 text-black text-sm">
+                My Coupons
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center ml-2 py-3 hover:bg-gray-200 hover:text-blue-600 text-black text-sm">
+                My Reviews & Ratings
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center ml-2 py-3 hover:bg-gray-200 hover:text-blue-600 text-black text-sm">
+                All Notifications
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center ml-2 py-2 hover:bg-gray-200 hover:text-blue-600 text-black text-sm">
+               My Wishlist
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <hr class="border-t border-gray-300 my-4">
+  
+      <!-- Logout -->
+
+      <li class="text-gray-600"> 
+        <button (click) = "isLoggedIn() ? onLogout() : onLogIn()"  class="font-semibold flex items-center  hover:bg-gray-200 rounded-lg">
+            <span class="flex items-center gap-2 p-2">
+              <ng-icon name="heroArrowRightOnRectangleSolid"></ng-icon>
+            </span>
+            {{ isLoggedIn() ? 'Logout' : 'Login' }}
+        </button>
+      </li>
+    </ul>
+  </div>
+  
+  
+    <!-- Profile Form (Grid Layout) -->
+     <div class="col-span-3 bg-white shadow-lg p-8 rounded-md">
+       <router-outlet />
+     </div>
+  </div>
+  

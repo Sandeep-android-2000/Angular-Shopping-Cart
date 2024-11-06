@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    position: relative;
+  }
+  
+  img, picture, video, canvas {
+    display: block;
+    max-width: 100%;
+  }
+  
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  ul, ol {
+    list-style: none;
+  }
+  
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

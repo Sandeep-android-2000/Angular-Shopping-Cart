@@ -1,0 +1,83 @@
+@if(productItem()){
+
+  <div class="container mx-auto p-4">
+    <div class="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-8 items-center">
+      
+      <!-- Product Image Section -->
+      <div class="lg:w-2/3 mt-20">
+        <img src="{{ productImage() }}" alt="{{ productName() }}" class="w-full h-auto object-cover shadow-lg rounded-lg">
+        <!-- <div class="flex mt-4 space-x-2">
+          <img src="https://via.placeholder.com/100" alt="Thumbnail 1" class="w-16 h-16 object-cover">
+          <img src="https://via.placeholder.com/100" alt="Thumbnail 2" class="w-16 h-16 object-cover">
+          <img src="https://via.placeholder.com/100" alt="Thumbnail 3" class="w-16 h-16 object-cover">
+        </div> -->
+      </div>
+  
+      <!-- Product Information Section -->
+      <div class="lg:w-1/3">
+        <!-- Product Title -->
+        <h1 class="text-3xl font-bold text-gray-800">{{ productName()}}</h1>
+        
+        <!-- Product Ratings -->
+        <div class="flex items-center space-x-2 mt-2">
+          <div class="flex items-center">
+            <!-- Example stars (replace with dynamic values) -->
+            <span class="text-yellow-400">★★★★★</span>
+          </div>
+          <p class="text-sm text-gray-600">(200+ ratings)</p>
+        </div>
+  
+        <!-- Price -->
+        <div class="mt-4 text-3xl text-red-600 font-semibold">
+          {{ productPrice() | currency : 'INR' }}
+        </div>
+  
+        <!-- Coupon Section -->
+        <div class="mt-2">
+          <span class="bg-yellow-300 text-yellow-900 py-1 px-2 rounded">Coupon</span>
+          <span class="ml-2">Apply {{100 | currency:'INR'}} coupon</span>
+        </div>
+  
+        <!-- Product Variants (Capacity Options) -->
+        <div class="mt-6">
+          <p class="font-semibold text-lg">Capacity:</p>
+          <div class="flex space-x-4 mt-2">
+  
+            @for(variety of productVariety();track $index){
+              <button class="py-2 px-4 border rounded hover:bg-gray-200">{{variety}}</button>
+            }
+            <!-- <button class="py-2 px-4 border rounded hover:bg-gray-200">20GB RAM | 1TB SSD</button>
+            <button class="py-2 px-4 border rounded bg-blue-600 text-white">36GB RAM | 1TB SSD</button> -->
+          </div>
+        </div>
+  
+        <!-- Stock Information -->
+        <div class="mt-4 text-red-600 font-semibold">
+          @if(productQuantity() <= 2){
+            Only {{productQuantity()}} left in stock - order soon.
+          }@else {
+            In Stocks :  {{productQuantity()}}
+          }
+        </div>
+  
+        <!-- Add to Cart Button -->
+        <button class="mt-6 w-full bg-yellow-500 hover:bg-yellow-600 text-white py-3 rounded-lg font-semibold" (click)="addToCart()">
+          Add to Cart
+        </button>
+  
+        <!-- Delivery Information -->
+        
+      </div>
+    </div>
+  </div>
+  
+  <app-toast />
+}@else {
+  <app-not-found />
+}
+
+
+
+
+
+

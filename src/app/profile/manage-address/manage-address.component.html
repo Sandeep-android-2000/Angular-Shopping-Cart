@@ -1,0 +1,153 @@
+<div class="max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-sm">
+    <h2 class="text-xl font-semibold mb-6">Manage Addresses</h2>
+    
+    <!-- Add New Address Link -->
+    <a href="#" class="text-blue-600 hover:text-blue-800 mb-4 block">ADD A NEW ADDRESS</a>
+    
+    <!-- Current Location Button -->
+    <button 
+      (click)="useCurrentLocation()"
+      class="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center gap-2 mb-6 hover:bg-blue-700">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+      </svg>
+      Use my current location
+    </button>
+
+    <!-- Address Form -->
+    <form [formGroup]="addressForm" (ngSubmit)="onSubmit()" class="space-y-4">
+      <!-- Name and Phone -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <input 
+            type="text" 
+            formControlName="name"
+            placeholder="Name"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+        </div>
+        <div>
+          <input 
+            type="tel" 
+            formControlName="phone"
+            placeholder="10-digit mobile number"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+        </div>
+      </div>
+
+      <!-- Pincode and Locality -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <input 
+            type="text" 
+            formControlName="pincode"
+            placeholder="Pincode"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+        </div>
+        <div>
+          <input 
+            type="text" 
+            formControlName="locality"
+            placeholder="Locality"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div>
+        <textarea 
+          formControlName="address"
+          placeholder="Address (Area and Street)"
+          rows="3"
+          class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+        ></textarea>
+      </div>
+
+      <!-- City and State -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <input 
+            type="text" 
+            formControlName="city"
+            placeholder="City/District/Town"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+        </div>
+        <div>
+          <select 
+            formControlName="state"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+            <option value="">--Select State--</option>
+
+            @for(state of states;track $index){
+                <option [value]="state">{{state}}</option>
+            }
+
+          </select>
+        </div>
+      </div>
+
+      <!-- Landmark and Alternate Phone -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <input 
+            type="text" 
+            formControlName="landmark"
+            placeholder="Landmark (Optional)"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+        </div>
+        <div>
+          <input 
+            type="tel" 
+            formControlName="alternatePhone"
+            placeholder="Alternate Phone (Optional)"
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+          >
+        </div>
+      </div>
+
+      <!-- Address Type -->
+      <div class="space-x-4">
+        <label class="inline-flex items-center">
+          <input 
+            type="radio" 
+            formControlName="addressType" 
+            value="Home"
+            class="form-radio text-blue-600"
+          >
+          <span class="ml-2">Home</span>
+        </label>
+        <label class="inline-flex items-center">
+          <input 
+            type="radio" 
+            formControlName="addressType" 
+            value="Work"
+            class="form-radio text-blue-600"
+          >
+          <span class="ml-2">Work</span>
+        </label>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-4">
+        <button 
+          type="submit"
+          class="bg-blue-600 text-white px-8 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        >
+          SAVE
+        </button>
+        <button 
+          type="button"
+          (click)="onCancel()"
+          class="text-blue-600 hover:text-blue-800"
+        >
+          CANCEL
+        </button>
+      </div>
+    </form>
+  </div>

@@ -1,0 +1,8 @@
+.rating span {
+    font-size: 20px;  /* Size of the star */
+    color: gray;      /* Default color */
+  }
+  
+  .rating span.filled {
+    color: gold;      /* Filled stars (based on rating) */
+  }

@@ -1,0 +1,41 @@
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .quantity-btn:hover {
+    background-color: #0056b3;
+  }
+  .quantity-input {
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 0 10px;
+  }
+  
+  /* Styles for Disabled Button */
+  .quantity-btn:disabled {
+    cursor: not-allowed;
+  }
+  
+  .disabled-btn {
+    background-color: #d3d3d3;
+    color: #888;
+  }
+

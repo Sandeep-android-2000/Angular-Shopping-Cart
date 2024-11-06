@@ -1,0 +1,38 @@
+<div class="border p-4 rounded-lg shadow-md flex flex-col items-center justify-center">
+  <img [src]="product.image" alt="{{ product.name }}" class="w-full h-full object-fill mb-4 rounded-lg">
+  <h2 class="text-lg font-semibold py-1 ">{{ product.name | titlecase }}</h2>
+  <p class="text-sm text-gray-500 py-1 ">{{ product.brand | titlecase }}</p>
+  <p class="text-md text-blue-600 font-bold py-1">Price: {{ product.price | currency : 'INR'}}</p>
+  <p class="py-1 text-center">In Stock: {{ product.quantity}}</p>
+
+
+
+  <div class="flex justify-between items-center mt-[10px] gap-4">
+    <button [routerLink]="'productdetails/' + product.id"
+      class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+      More Details
+    </button>
+    @if(!isInCart){
+      <button (click)="addToCart(product)" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add to
+        Cart</button>
+    }@else {
+      <div class="quantity-container">
+        <button 
+          (click)="decreaseQuantity(product,quantityInput)"
+          class="quantity-btn" >
+          −
+        </button>
+        
+        <input type="text" class="quantity-input" [value]="quantity" readonly #quantityInput>
+        
+        <button (click)="increaseQuantity(product)" class="quantity-btn">+</button>
+      </div>
+
+      
+
+      
+    }
+  </div>
+</div>
+<app-toast />
+

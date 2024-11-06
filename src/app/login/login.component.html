@@ -1,0 +1,116 @@
+<!-- auth.component.html -->
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-md bg-white shadow-md rounded-lg overflow-hidden">
+      <!-- Tab Navigation -->
+      <div class="flex justify-around border-b">
+        <button
+          (click)="switchToLogin()"
+          [ngClass]="{ 'font-semibold text-blue-500 border-b-2 border-blue-500': isLoginForm }"
+          class="py-3 w-1/2 text-center"
+        >
+          Login
+        </button>
+        <button
+          (click)="switchToSignup()"
+          [ngClass]="{ 'font-semibold text-blue-500 border-b-2 border-blue-500': !isLoginForm }"
+          class="py-3 w-1/2 text-center"
+        >
+          Signup
+        </button>
+      </div>
+  
+      <!-- Form Container -->
+      <div class="p-6">
+        <!-- Login Form -->
+        <div *ngIf="isLoginForm">
+          <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">Login</h2>
+          <form  (ngSubmit)="onLogin()"  class="space-y-4">
+            <input
+              type="text"
+              placeholder="FirstName"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              [(ngModel)]="fname"
+              name="fname"
+              required
+            />
+            <input
+              type="text"
+              placeholder="LastName"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              [(ngModel)]="lname"
+              name="lname"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+              [(ngModel)] = "email"
+              name="email"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              [(ngModel)]="password"
+              name="password"
+              required
+            />
+            <button
+              type="submit"
+              class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+            >
+              Log In
+            </button>
+          </form>
+        </div>
+  
+        <!-- Signup Form -->
+        <div *ngIf="!isLoginForm">
+          <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">Signup</h2>
+          <form (ngSubmit)="onSignup()" class="space-y-4">
+            <input
+              type="text"
+              placeholder="FirstName"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              [(ngModel)]="fname"
+              name="fname"
+              required
+            />
+            <input
+              type="text"
+              placeholder="LastName"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              [(ngModel)]="lname"
+              name="lname"
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              [(ngModel)]="email"
+              name="email"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              [(ngModel)]="password"
+              name="password"
+              required
+            />
+            <button
+              type="submit"
+              class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

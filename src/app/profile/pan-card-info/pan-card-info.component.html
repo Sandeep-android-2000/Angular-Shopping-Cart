@@ -1,0 +1,67 @@
+
+    <h2 class="text-2xl font-semibold mb-4">PAN Card Information</h2>
+  
+    <form [formGroup] = "panForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- PAN Card Number -->
+      <div>
+        <label class="block font-medium text-gray-700">PAN Card Number</label>
+        <input
+          type="text"
+          formControlName="panNumber"
+          placeholder="PAN Card Number"
+          class="mt-1 block w-80 h-12 border border-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 sm:text-sm p-4 outline-none"
+        />
+      </div>
+  
+      <!-- Full Name -->
+      <div>
+        <label class="block font-medium text-gray-700">Full Name</label>
+        <input
+          type="text"
+          formControlName="fullName"
+          placeholder="Full Name"
+          class="mt-1 block w-80 h-12 border border-gray-300 shadow-sm focus:ring-indigo-500 focus:ring-2 sm:text-sm outline-none p-4"
+        />
+      </div>
+  
+      <!-- Upload PAN Card -->
+      <div >
+        <label class="inline font-medium text-gray-700">Upload PAN Card (Only JPEG file is allowed)</label>
+        <input
+          type="file"
+          (change)="onFileChange($event)"
+          accept=".jpeg"
+          class="mt-1 block w-80 h-14 p-3 border border-gray-300 shadow-sm sm:text-sm"
+        />
+      </div>
+  
+      <!-- Declaration -->
+      <div class="flex items-start">
+        <input
+          type="checkbox"
+          formControlName="declaration"
+          class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+        />
+        <label class="ml-2 block text-sm text-gray-900">
+          I do hereby declare that PAN furnished/stated above is correct and belongs to me, registered as an account holder
+          with www.myCart.com. I further declare that I shall solely be held responsible for the consequences, in case of
+          any false PAN declaration.
+        </label>
+      </div>
+  
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 disabled:bg-gray-300"
+        [disabled]="!panForm.valid"
+      >
+        UPLOAD
+      </button>
+  
+      <!-- Terms and Conditions -->
+      <a href="#" class="text-blue-600 hover:underline text-sm block text-center mt-4">
+        Read Terms & Conditions of PAN Card Information
+      </a>
+    </form>
+
+  

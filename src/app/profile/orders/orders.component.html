@@ -1,0 +1,123 @@
+<div class="flex min-h-screen bg-gray-50">
+    <!-- Filters Sidebar -->
+    <div class="w-64 p-6 bg-white shadow-sm">
+        <h2 class="text-lg font-medium mb-4">Filters</h2>
+
+        <!-- Order Status -->
+        <div class="mb-6">
+            <h3 class="text-sm font-medium text-gray-700 mb-2">ORDER STATUS</h3>
+            <div class="space-y-2">
+                <label class="flex items-center space-x-2 text-sm text-gray-600">
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500"
+                    (change)="onStatusChange('On the way', $event)" [checked]="orderStatusSignal()"> 
+                    <span>On the way</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm text-gray-600"> 
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500"
+                    (change)="onStatusChange('Delivered', $event)">
+                    <span>Delivered</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm text-gray-600">
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500"
+                    (change)="onStatusChange('Cancelled', $event)">
+                    <span>Cancelled</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm text-gray-600">
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500"
+                    (change)="onStatusChange('Cancelled', $event)">
+                    <span>Returned</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Order Time -->
+        <div>
+            <h3 class="text-sm font-medium text-gray-700 mb-2">ORDER TIME</h3>
+            <div class="space-y-2">
+                <label class="flex items-center space-x-2 text-sm text-gray-600">
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500">
+                    <span>Last 30 days</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm text-gray-600">
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500">
+                    <span>2023</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm text-gray-600">
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500">
+                    <span>2022</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm text-gray-600">
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500">
+                    <span>2021</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm text-gray-600">
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500">
+                    <span>2020</span>
+                </label>
+                <label class="flex items-center space-x-2 text-sm text-gray-600">
+                    <input type="checkbox" class="form-checkbox rounded text-blue-500">
+                    <span>Older</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-1 p-6 bg-gray-200">
+        <!-- Search Bar -->
+        <div class="mb-6 flex">
+            <input type="text" placeholder="Search your orders here"
+                class="flex-1 px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 border-r-0">
+            <button
+                class="border px-4 py-2 bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-l-0">
+                Search Orders
+            </button>
+        </div>
+
+        @if(orders.length > 0){
+
+        <h2 class="text-2xl font-bold mb-6">My Orders</h2>
+
+
+
+        @for(order of filteredOrders;track $index){
+        <div class="bg-indigo-300 mb-6 p-4 border rounded-lg shadow-lg">
+            
+                <h3 class="text-lg font-semibold">Order placed on {{order.date | date: 'dd-MM-yyyy'}}</h3>
+                @for(item of order.items;track $index){
+                    <div class="flex justify-between mb-2">
+                        <span> {{item.name}} (x{{item.quantity}})</span>
+                        <span class="font-bold">{{ item.price * item.quantity | currency: 'INR'}}</span>
+                    </div>
+                }
+                <!-- <div class="flex justify-between mt-4">
+                    <span>Total:</span>
+                    <span class="font-bold">{{ order.totalAmount*order. | currency : 'INR' }}</span>
+                </div> -->
+            
+            </div>
+        }
+        
+
+
+
+        }@else {
+        <div class="flex flex-col items-center justify-center min-h-[400px] bg-white rounded-lg shadow-sm p-8">
+            <div class="mb-4">
+                <!-- You can replace this with an actual SVG or image -->
+                <div class="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center">
+                    <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4m8-8v16" />
+                    </svg>
+                </div>
+            </div>
+            <h3 class="text-xl font-medium text-gray-900 mb-2">You have no orders</h3>
+            <button
+                class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                routerLink="">
+                Start Shopping
+            </button>
+        </div>
+        }
+    </div>
+</div>
